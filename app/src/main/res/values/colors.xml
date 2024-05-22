@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="error">#FA3131</color>
+    <color name="gray2">#B1C0B5</color>
+    <color name="main">#3F7BF1</color>
+    <color name="text1">#1A1E27</color>
+    <color name="text2">#565B64</color>
+    <color name="text3">#9D9EA3</color>
+    <color name="sub1">#A8C6F4</color>
+    <color name="sub2">#C0C4C8</color>
+    <color name="sub3">#E2E5E7</color>
+    <color name="sub4">#F0F0F1</color>
+</resources>

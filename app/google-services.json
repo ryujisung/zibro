@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "360405326350",
+    "project_id": "ziblo-f2723",
+    "storage_bucket": "ziblo-f2723.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:360405326350:android:ea33caabef315263dd7a5f",
+        "android_client_info": {
+          "package_name": "com.example.zibro"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCFiqqSJhurrcAcAi89wNxm3_AvUvm9ee4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">zibro</string>
+    <string name="re_password"><u>비밀번호 재설정</u></string>
+</resources>

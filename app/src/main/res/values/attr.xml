@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="HeaderMain">
+        <attr name="mainMenuText" format="string"/>
+        <attr name="mainMenuTextColor" format="string"/>
+        <attr name="mainMenu1Icon" format="reference"/>
+        <attr name="mainMenu2Icon" format="reference"/>
+        <attr name="mainMenu3Icon" format="reference"/>
+    </declare-styleable>
+
+    <declare-styleable name="HeaderNavigation">
+        <attr name="navigationTitle" format="string"/>
+        <attr name="navigationMenu1Icon" format="reference"/>
+        <attr name="navigationMenu2Icon" format="reference"/>
+    </declare-styleable>
+
+    <declare-styleable name="HeaderTitle">
+        <attr name="titleTitle" format="string"/>
+        <attr name="titleMenu1Icon" format="reference"/>
+        <attr name="titleMenu2Icon" format="reference"/>
+    </declare-styleable>
+</resources>

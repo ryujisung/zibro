@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_register"
+    app:startDestination="@id/signUp1Fragment">
+
+    <fragment
+        android:id="@+id/signUp1Fragment"
+        android:name="com.example.zibro.ui.signup.SignUp1Fragment"
+        android:label="SignUp1Fragment" >
+        <action
+            android:id="@+id/action_signUp1Fragment_to_signUp2Fragment"
+            app:destination="@id/signUp2Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUp2Fragment"
+        android:name="com.example.zibro.ui.signup.SignUp2Fragment"
+        android:label="SignUp2Fragment">
+        <action
+            android:id="@+id/action_signUp2Fragment_to_signUp1Fragment"
+            app:destination="@id/signUp1Fragment" />
+        <action
+            android:id="@+id/action_signUp2Fragment_to_signUp3Fragment"
+            app:destination="@id/signUp3Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUp3Fragment"
+        android:name="com.example.zibro.ui.signup.SignUp3Fragment"
+        android:label="SignUp2Fragment">
+        <action
+            android:id="@+id/action_signUp3Fragment_to_signUp2Fragment"
+            app:destination="@id/signUp2Fragment" />
+        <action
+            android:id="@+id/action_signUp3Fragment_to_signUp4Fragment"
+            app:destination="@id/signUp4Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUp4Fragment"
+        android:name="com.example.zibro.ui.signup.SignUp4Fragment"
+        android:label="SignUp2Fragment">
+        <action
+            android:id="@+id/action_signUp4Fragment_to_signUp3Fragment"
+            app:destination="@id/signUp3Fragment" />
+        <action
+            android:id="@+id/action_signUp4Fragment_to_signUp5Fragment"
+            app:destination="@id/signUp5Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUp5Fragment"
+        android:name="com.example.zibro.ui.signup.SignUp5Fragment"
+        android:label="SignUp2Fragment">
+        <action
+            android:id="@+id/action_signUp5Fragment_to_signUp4Fragment"
+            app:destination="@id/signUp4Fragment" />
+        <action
+            android:id="@+id/action_signUp5Fragment_to_signUp6Fragment"
+            app:destination="@id/signUp6Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUp6Fragment"
+        android:name="com.example.zibro.ui.signup.SignUp6Fragment"
+        android:label="SignUp2Fragment">
+        <action
+            android:id="@+id/action_signUp6Fragment_to_signUp5Fragment"
+            app:destination="@id/signUp5Fragment" />
+    </fragment>
+
+</navigation>
