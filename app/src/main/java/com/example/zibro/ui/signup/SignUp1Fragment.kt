@@ -16,7 +16,6 @@ class SignUp1Fragment : SignUpFragment<FragmentSignUp1Binding>(R.layout.fragment
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.vm = viewModel
-        val a = 10
 
         binding.hdSignUp1.setNavigationClickListener {
             requireActivity().finish()
