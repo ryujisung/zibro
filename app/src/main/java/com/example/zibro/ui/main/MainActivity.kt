@@ -6,8 +6,8 @@ import androidx.navigation.NavController
 import com.example.zibro.R
 import com.example.zibro.databinding.ActivityMainBinding
 import com.example.zibro.ui.base.BaseActivity
+import com.example.zibro.ui.chat.ChatFragment
 import com.example.zibro.ui.community.CommunityFragment
-import com.example.zibro.ui.counsel.CounselFragment
 import com.example.zibro.ui.home.HomeFragment
 import com.example.zibro.ui.my.MyFragment
 
@@ -34,7 +34,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
                             .replace(R.id.fl_main, friendFragment).commit()
                     }
                     R.id.main_menu_counsel -> {
-                        val caleanderFragment = CounselFragment()
+                        val caleanderFragment = ChatFragment()
                         supportFragmentManager.beginTransaction()
                             .replace(R.id.fl_main, caleanderFragment).commit()
                     }

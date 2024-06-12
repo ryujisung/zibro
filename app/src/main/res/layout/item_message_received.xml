@@ -1,0 +1,44 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingBottom="4dp">
+
+    <ImageView
+        android:id="@+id/imageViewProfile"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/textViewSenderName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:layout_marginStart="6dp"
+        android:text="Sender name"
+        app:layout_constraintStart_toEndOf="@id/imageViewProfile"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <ImageView
+        android:id="@+id/txt_background"
+        android:layout_width="0dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="6dp"
+        android:src="@drawable/background_message_recived"
+        app:layout_constraintStart_toStartOf="@id/textViewReceivedMessage"
+        app:layout_constraintEnd_toEndOf="@id/textViewReceivedMessage"
+        app:layout_constraintTop_toBottomOf="@id/textViewSenderName"/>
+
+    <TextView
+        android:id="@+id/textViewReceivedMessage"
+        android:textColor="@android:color/black"
+        android:padding="12dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="아아아악"
+        app:layout_constraintStart_toStartOf="@id/textViewSenderName"
+        app:layout_constraintTop_toTopOf="@id/txt_background"
+        app:layout_constraintBottom_toBottomOf="@id/txt_background"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

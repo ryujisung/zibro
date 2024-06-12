@@ -36,6 +36,7 @@ class SignUpViewModel: ViewModel() {
                         "email" to email.value.toString(),
                         "name" to nickname.value.toString(),
                         "profileImageUrl" to "https://i.namu.wiki/i/Bge3xnYd4kRe_IKbm2uqxlhQJij2SngwNssjpjaOyOqoRhQlNwLrR2ZiK-JWJ2b99RGcSxDaZ2UCI7fiv4IDDQ.webp",
+                        //TODO : 프로필 이미지 url 수정
                         "state" to "없음"
                     )
                     db.collection(email.value.toString())

@@ -1,14 +1,171 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.my.MyFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <data>
+        <variable
+            name="nickname"
+            type="String" />
+
+        <variable
+            name="state"
+            type="String" />
+
+    </data>
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent">
 
-</FrameLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:context=".ui.more.MoreFragment"
+            android:paddingStart="22dp"
+            android:paddingEnd="22dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/my_txt_text0"
+                android:textSize="24sp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/suit_bold"
+                android:text="더보기"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <TextView
+                android:id="@+id/my_txt_nickname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="@={nickname}"
+                app:layout_constraintTop_toBottomOf="@+id/my_txt_text0"
+                app:layout_constraintStart_toStartOf="parent"
+                />
+
+            <TextView
+                android:id="@+id/my_txt_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@={state}"
+                android:textSize="13sp"
+                android:textColor="@color/text3"
+                app:layout_constraintTop_toBottomOf="@+id/my_txt_nickname"
+                app:layout_constraintStart_toStartOf="@+id/my_txt_nickname"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintTop_toBottomOf="@+id/my_txt_email"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <TextView
+                    android:id="@+id/my_txt_text1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:text="설정"
+                    android:textSize="13sp"
+                    android:fontFamily="@font/suit_medium"
+                    android:textColor="@color/text3" />
+
+                <TextView
+                    android:layout_marginTop="20dp"
+                    android:id="@+id/my_txt_noti"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="알림" />
+
+                <View
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:id="@+id/bar2"
+                    android:layout_marginTop="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:foreground="@drawable/gray_hr" />
+
+
+                <TextView
+                    android:layout_marginTop="20dp"
+                    android:id="@+id/my_txt_text2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="계정설정"
+                    android:textSize="13sp"
+                    android:fontFamily="@font/suit_medium"
+                    android:textColor="@color/text3" />
+
+                <TextView
+                    android:id="@+id/my_txt_edit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="회원 정보 수정" />
+
+                <TextView
+                    android:id="@+id/my_txt_pw"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="비밀번호 변경" />
+
+                <TextView
+                    android:id="@+id/my_txt_logout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="로그아웃"
+                    android:layout_marginTop="20dp" />
+
+                <View
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:id="@+id/bar3"
+                    android:layout_marginTop="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:foreground="@drawable/gray_hr" />
+
+                <TextView
+                    android:id="@+id/my_txt_text3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="13sp"
+                    android:fontFamily="@font/suit_medium"
+                    android:textColor="@color/text3"
+                    android:text="고객센터"
+                    android:layout_marginTop="20dp" />
+
+                <TextView
+                    android:id="@+id/my_txt_noti2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="공지사항" />
+
+                <TextView
+                    android:id="@+id/my_txt_center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="고객센터" />
+
+                <TextView
+                    android:id="@+id/my_txt_cuVersion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="현재 버전 0.0.1" />
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+</layout>
