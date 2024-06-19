@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.TextWatcher
 import androidx.databinding.DataBindingUtil
 import com.example.zibro.R
 import com.example.zibro.databinding.ActivityLoginBinding
@@ -25,6 +26,21 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
 
         // Firebase 인증 객체의 인스턴스를 가져옵니다.
         auth = FirebaseAuth.getInstance()
+
+        /**val email = binding.loginEdtEmail.text.toString()
+        val password = binding.loginEdtPassword.text.toString()
+
+        binding.btnStart.isEnabled = email.isNotEmpty() && password.isNotEmpty()
+        binding.loginEdtEmail.addTextChangedListener(object : TextWatcher{
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+            }
+            override fun afterTextChanged(p0: Editable?) {
+
+            }
+        })**/
 
         binding.btnStart.setOnClickListener {
             val email = binding.loginEdtEmail.text.toString().trim()

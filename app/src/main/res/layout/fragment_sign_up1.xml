@@ -46,35 +46,34 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="이메일을 입력해 주세요"
-                android:textSize="22sp"
+                android:textSize="20sp"
                 android:fontFamily="@font/suit_bold"
                 app:layout_constraintTop_toTopOf="@id/guideline1"
                 app:layout_constraintStart_toStartOf="@id/line_signUp1_start"
                 app:layout_constraintTop_toBottomOf="@id/hd_signUp1" />
 
             <TextView
-                android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="34dp"
-                android:text="이메일"
-                android:textColor="@color/text3"
-                android:textSize="14sp"
-                app:layout_constraintStart_toStartOf="@id/line_signUp1_start"
-                app:layout_constraintTop_toBottomOf="@+id/textView1" />
+                android:text="1/5"
+                android:textColor="@color/text2"
+                android:textSize="12sp"
+                app:layout_constraintTop_toTopOf="@id/guideline1"
+                app:layout_constraintEnd_toEndOf="@id/line_signUp1_end"/>
 
             <EditText
                 android:id="@+id/edt_signUp1_email"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:hint="이메일 입력"
+                android:layout_marginTop="30dp"
+                android:padding="14dp"
+                android:hint="이메일"
                 android:inputType="textEmailAddress"
                 android:text="@={vm.email}"
                 app:layout_constraintEnd_toEndOf="@id/line_signUp1_end"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="@id/line_signUp1_start"
-                app:layout_constraintTop_toBottomOf="@+id/textView2" />
+                app:layout_constraintTop_toBottomOf="@+id/textView1" />
 
             <TextView
                 android:id="@+id/txt_sign1_eror"
