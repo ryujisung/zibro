@@ -4,6 +4,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+        <variable
+            name="title"
+            type="String" />
+        <variable
+            name="content"
+            type="String" />
 
     </data>
 
@@ -15,6 +21,7 @@
         tools:context=".ui.community.CommunityActivity">
 
         <TextView
+            android:text="@{title}"
             android:id="@+id/article_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -25,11 +32,31 @@
             android:layout_marginBottom="16dp" />
 
         <TextView
+            android:text="@{content}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:id="@+id/article_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="16sp" />
+        <EditText
+            app:layout_constraintTop_toBottomOf="@id/article_content"
+            android:id="@+id/editTextReply"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="답글을 입력하세요"
+            android:layout_marginEnd="90dp" />
+
+        <Button
+            app:layout_constraintTop_toTopOf="@id/editTextReply"
+            app:layout_constraintStart_toEndOf="@id/editTextReply"
+            android:id="@+id/buttonSubmit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="답글 달기"
+            android:layout_below="@id/editTextReply"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="16dp" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

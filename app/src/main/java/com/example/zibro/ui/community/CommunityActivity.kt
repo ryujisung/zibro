@@ -1,6 +1,7 @@
 package com.example.zibro.ui.community
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.example.zibro.R
 import com.example.zibro.model.Article
@@ -13,11 +14,14 @@ class CommunityActivity : BaseActivity<ActivityCommunityBinding>(R.layout.activi
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_community)
-        val a = 10
         val article = intent.getParcelableExtra<Article>("article")
+        Log.e("ddd",article?.title.toString())
 
-        binding.articleTitle.text = article?.title
-        binding.articleContent.text = article?.context
+        binding.title = article?.title.toString()
+        binding.content = article?.context.toString()
+        binding.buttonSubmit.setOnClickListener {
+            val reply = binding.editTextReply.text.toString()
+            binding.editTextReply.text.clear()
+        }
     }
 }
