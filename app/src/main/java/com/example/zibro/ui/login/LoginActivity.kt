@@ -28,6 +28,8 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
         // Firebase 인증 객체의 인스턴스를 가져옵니다.
         auth = FirebaseAuth.getInstance()
 
+        binding.btnStart.isEnabled = false
+
         binding.loginEdtPassword.addTextChangedListener(object : TextWatcher{
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
 
