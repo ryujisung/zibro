@@ -14,6 +14,7 @@ class CommunityActivity : BaseActivity<ActivityCommunityBinding>(R.layout.activi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_community)
+        val a = 10
         val article = intent.getParcelableExtra<Article>("article")
 
         binding.articleTitle.text = article?.title
