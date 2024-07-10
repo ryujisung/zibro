@@ -31,7 +31,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
                 android:textSize="20sp"
-                android:fontFamily="@font/pretendard_semibold"
                 android:text="Chat_GPT" />
 
         </LinearLayout>
