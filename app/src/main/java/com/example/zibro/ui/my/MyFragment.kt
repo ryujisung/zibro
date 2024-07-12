@@ -33,7 +33,7 @@ class MyFragment: BaseFragment<FragmentMyBinding>(R.layout.fragment_my) {
 
                 val friend = documents.toObjects(Friend::class.java)
                 binding.nickname = friend[0].name
-                binding.state = friend[0].state
+                binding.state = friend[0].email
             }
         binding.myTxtLogout.setOnClickListener {
             val intent = Intent(context, LoginActivity::class.java)
