@@ -76,9 +76,7 @@ class CommunityFragment : BaseFragment<FragmentCommunityBinding>(R.layout.fragme
                 for (document in documents) {
                     val article = document.toObject(Article::class.java)
                     if (category == "전체" || article.classify == category) {
-                        for (i in 0..50) {
                             articles.add(article)
-                        }
                     }
                 }
                 communutyAdapter.setChatRooms(articles)

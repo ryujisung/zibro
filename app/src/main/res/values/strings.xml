@@ -3,4 +3,10 @@
     <string name="re_password"><u>비밀번호 재설정</u></string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string-array name="channels">
+        <item>자유</item>
+        <item>유머</item>
+        <item>질문</item>
+        <item>상담</item>
+    </string-array>
 </resources>

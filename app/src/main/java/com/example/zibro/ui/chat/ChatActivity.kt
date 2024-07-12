@@ -1,8 +1,11 @@
 package com.example.zibro.ui.chat
+
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.zibro.R
 import com.example.zibro.databinding.ActivityChatBinding
+import com.example.zibro.model.GenerateTextRequest
+import com.example.zibro.model.GeneratedTextResponse
 import com.example.zibro.model.Message
 import com.example.zibro.ui.base.BaseActivity
 import com.google.firebase.auth.FirebaseAuth
@@ -10,31 +13,20 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
-import com.google.firebase.firestore.FirebaseFirestore
-import okhttp3.*
-import okhttp3.MediaType.Companion.toMediaType
-import okhttp3.RequestBody.Companion.toRequestBody
-import org.json.JSONArray
-import org.json.JSONException
-import org.json.JSONObject
-import java.io.IOException
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
-import java.util.concurrent.TimeUnit
 
 class ChatActivity : BaseActivity<ActivityChatBinding>(R.layout.activity_chat) {
     private lateinit var messageAdapter: MessageAdapter
     private lateinit var firebaseAuth: FirebaseAuth
     private val messagesList = mutableListOf<Message>()
-    private lateinit var firestore: FirebaseFirestore
-    private val client by lazy {
-        OkHttpClient.Builder()
-            .connectTimeout(60, TimeUnit.SECONDS)
-            .writeTimeout(120, TimeUnit.SECONDS)
-            .readTimeout(60, TimeUnit.SECONDS)
-            .build()
-    }
+    private lateinit var apiService: ApiService
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,6 +44,15 @@ class ChatActivity : BaseActivity<ActivityChatBinding>(R.layout.activity_chat) {
         val chatRoomId = intent.getStringExtra("chatRoomId") ?: return
 
         setupChatRoom(chatRoomId)
+
+        // Retrofit 인스턴스 생성
+        val retrofit = Retrofit.Builder()
+            .baseUrl("http://localhost:5000/generate")  // Ngrok가 제공한 공개 URL로 대체
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+
+        // ApiService 인스턴스 생성
+        apiService = retrofit.create(ApiService::class.java)
 
         binding.buttonSendMessage.setOnClickListener {
             val messageText = binding.edittextChatMessage.text.toString().trim()
@@ -106,73 +107,37 @@ class ChatActivity : BaseActivity<ActivityChatBinding>(R.layout.activity_chat) {
         }
     }
 
-    // GPT API 호출 함수
+    // GPT API 호출 함수 (Retrofit을 사용하여 Flask 서버로 요청)
     fun callAPI(question: String) {
-        val arr = JSONArray()
-        val baseAi = JSONObject()
-        val userMsg = JSONObject()
-        try {
-            baseAi.put("role", "user")
-            baseAi.put("content", "You are a helpful and kind AI Assistant.")
-            userMsg.put("role", "user")
-            userMsg.put("content", question)
-            arr.put(baseAi)
-            arr.put(userMsg)
-        } catch (e: JSONException) {
-            throw RuntimeException(e)
-        }
-
-        val jsonObject = JSONObject()
-        try {
-            jsonObject.put("model", "gpt-3.5-turbo")
-            jsonObject.put("messages", arr)
-        } catch (e: JSONException) {
-            e.printStackTrace()
-        }
-
-        val body = jsonObject.toString().toRequestBody("application/json; charset=utf-8".toMediaType())
-        val request = Request.Builder()
-            .url("https://api.openai.com/v1/chat/completions")
-            .header("Authorization", "Bearer " +  "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")
-            .post(body)
-            .build()
-
-
-        client.newCall(request).enqueue(object : Callback {
-            override fun onFailure(call: Call, e: IOException) {
-                addResponse("Failed to load response due to " + e.message)
-            }
-
-            override fun onResponse(call: Call, response: Response) {
+        val request = GenerateTextRequest("질문 : "+question+"답변:")
+        apiService.generateText(request).enqueue(object : Callback<GeneratedTextResponse> {
+            override fun onResponse(call: Call<GeneratedTextResponse>, response: Response<GeneratedTextResponse>) {
                 if (response.isSuccessful) {
-                    try {
-                        val responseBody = response.body?.string() ?: ""
-                        val jsonObject = JSONObject(responseBody)
-                        val jsonArray = jsonObject.getJSONArray("choices")
-                        val result = jsonArray.getJSONObject(0).getJSONObject("message").getString("content")
-                        addResponse(result.trim())
-                    } catch (e: JSONException) {
-                        e.printStackTrace()
-                    }
+                    val generatedText = response.body()?.generated_text ?: ""
+                    addResponse(generatedText)
                 } else {
-                    addResponse("Failed to load response due to " + response.body?.string())
-                }
-            }
-            private fun addResponse(response: String) {
-                val chatRoomId = intent.getStringExtra("chatRoomId") ?: return
-                runOnUiThread {
-                    // 여기서 response 문자열을 처리합니다.
-                    // 예를 들어, 채팅 메시지 목록에 추가하거나 화면에 표시할 수 있습니다.
-                    val botMessage = Message(
-                        senderUid = "bot",
-                        content = response,
-                        senderName = "ChatBot",
-                        sended_date = getCurrentDateTime()
-                    )
-                    sendMessage(chatRoomId, botMessage)
+                    addResponse("Failed to load response due to ${response.errorBody()?.string()}")
                 }
             }
 
+            override fun onFailure(call: Call<GeneratedTextResponse>, t: Throwable) {
+                addResponse("Failed to load response due to ${t.message}")
+            }
         })
+    }
+
+    private fun addResponse(response: String) {
+        val chatRoomId = intent.getStringExtra("chatRoomId") ?: return
+        runOnUiThread {
+            // 여기서 response 문자열을 처리합니다.
+            // 예를 들어, 채팅 메시지 목록에 추가하거나 화면에 표시할 수 있습니다.
+            val botMessage = Message(
+                senderUid = "bot",
+                content = response,
+                senderName = "ChatBot",
+                sended_date = getCurrentDateTime()
+            )
+            sendMessage(chatRoomId, botMessage)
+        }
     }
 }
