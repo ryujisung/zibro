@@ -61,9 +61,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
                 val articles = mutableListOf<Article>()
                 for (document in documents) {
                     val article = document.toObject(Article::class.java)
-                    articles.add(article)
+                    for (i in 0..10)
+                        articles.add(article)
                 }
-                hotCommunityAdapter.setChatRooms(articles)
+                articles.sortByDescending { it.view }
+                val topArticles = articles.take(3)
+                hotCommunityAdapter.setChatRooms(topArticles)
             }
     }
 }
