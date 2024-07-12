@@ -18,7 +18,7 @@ class DasfdasfActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val url = "http://0.0.0.0:8000/generate"  // FastAPI API의 URL로 변경
+        val url = "http://127.0.0.1:8000/generate"  // FastAPI API의 URL로 변경
         val data = JSONObject().apply {
             put("prompt", "Your prompt text here")
             put("max_length", 50)

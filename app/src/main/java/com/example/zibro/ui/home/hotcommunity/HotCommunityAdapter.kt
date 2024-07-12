@@ -10,7 +10,7 @@ import com.example.zibro.R
 import com.example.zibro.model.Article
 import com.example.zibro.ui.community.CommunityActivity
 
-class HotCommunutyAdapter(private val onChatRoomClicked: (Article) -> Unit) : RecyclerView.Adapter<HotCommunutyAdapter.ArticleViewHolder>() {
+class HotCommunityAdapter(private val onChatRoomClicked: (Article) -> Unit) : RecyclerView.Adapter<HotCommunityAdapter.ArticleViewHolder>() {
 
     private val articles = mutableListOf<Article>()
 
@@ -29,10 +29,7 @@ class HotCommunutyAdapter(private val onChatRoomClicked: (Article) -> Unit) : Re
         val article = articles[position]
         holder.bind(article)
         holder.itemView.setOnClickListener {
-            val context = holder.itemView.context
-            val intent = Intent(context, CommunityActivity::class.java)
-            intent.putExtra("article", article)
-            context.startActivity(intent)
+            onChatRoomClicked(article)
         }
     }
 
