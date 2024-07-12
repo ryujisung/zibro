@@ -39,9 +39,18 @@ class CommunutyAdapter(private val onChatRoomClicked: (Article) -> Unit) : Recyc
 
     class ArticleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val articleTitleTextView: TextView = itemView.findViewById(R.id.article_textview_title)
+        private val articleCommentCount: TextView = itemView.findViewById(R.id.article_item_textview_comment)
+        private val articleClassify : TextView = itemView.findViewById(R.id.article_item_textview_classify)
+        private val articlaTime : TextView = itemView.findViewById(R.id.article_item_textview_time)
+        private val articleUserName: TextView = itemView.findViewById(R.id.article_item_textview_username)
 
         fun bind(article: Article) {
             articleTitleTextView.text = article.title
+            articleCommentCount.text = "[" + article.comment.toString() +"]"
+            articleClassify.text = article.classify
+            articlaTime.text = article.time
+            articleUserName.text = article.username
         }
     }
 }
+

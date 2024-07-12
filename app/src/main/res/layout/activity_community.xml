@@ -34,7 +34,7 @@
         <TextView
             android:text="@{content}"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/article_title"
             android:id="@+id/article_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -1,5 +1,6 @@
 package com.example.zibro.ui.community
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,7 @@ import com.example.zibro.R
 import com.example.zibro.databinding.FragmentCommunityBinding
 import com.example.zibro.model.Article
 import com.example.zibro.ui.base.BaseFragment
+import com.google.android.material.tabs.TabLayout
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -25,8 +27,15 @@ class CommunityFragment : BaseFragment<FragmentCommunityBinding>(R.layout.fragme
         firebaseAuth = FirebaseAuth.getInstance()
         firestore = FirebaseFirestore.getInstance()
 
+        val titles = listOf("전체", "자유", "유머", "질문", "상담")
+
         setupRecyclerView()
+        setupTabLayout(titles)
         fetchArticles()
+        binding.writeButton.setOnClickListener {
+            val intent = Intent(context, CommunityWriteActivity::class.java)
+            startActivity(intent)
+        }
 
         return view
     }
@@ -42,14 +51,35 @@ class CommunityFragment : BaseFragment<FragmentCommunityBinding>(R.layout.fragme
         }
     }
 
-    private fun fetchArticles() {
+    private fun setupTabLayout(titles: List<String>) {
+        titles.forEach { title ->
+            binding.tabLayout.addTab(binding.tabLayout.newTab().setText(title))
+        }
+
+        binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab) {
+                val selectedCategory = tab.text.toString()
+                fetchArticles(selectedCategory)
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab) {}
+
+            override fun onTabReselected(tab: TabLayout.Tab) {}
+        })
+    }
+
+    private fun fetchArticles(category: String = "전체") {
         firestore.collection("community")
             .get()
             .addOnSuccessListener { documents ->
                 val articles = mutableListOf<Article>()
                 for (document in documents) {
                     val article = document.toObject(Article::class.java)
-                    articles.add(article)
+                    if (category == "전체" || article.classify == category) {
+                        for (i in 0..50) {
+                            articles.add(article)
+                        }
+                    }
                 }
                 communutyAdapter.setChatRooms(articles)
             }

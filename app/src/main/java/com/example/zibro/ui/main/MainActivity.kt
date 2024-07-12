@@ -46,7 +46,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
                 }
                 true
             }
-            selectedItemId = R.id.main_menu_community
+            selectedItemId = R.id.main_menu_home
         }
 
     }
