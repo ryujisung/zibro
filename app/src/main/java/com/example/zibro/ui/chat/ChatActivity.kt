@@ -13,6 +13,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
+import okhttp3.OkHttpClient
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -21,6 +22,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
+import java.util.concurrent.TimeUnit
 
 class ChatActivity : BaseActivity<ActivityChatBinding>(R.layout.activity_chat) {
     private lateinit var messageAdapter: MessageAdapter
@@ -44,12 +46,19 @@ class ChatActivity : BaseActivity<ActivityChatBinding>(R.layout.activity_chat) {
         val chatRoomId = intent.getStringExtra("chatRoomId") ?: return
 
         setupChatRoom(chatRoomId)
+        val client = OkHttpClient.Builder()
+            .connectTimeout(40, TimeUnit.SECONDS) // 연결 timeout 설정
+            .readTimeout(40, TimeUnit.SECONDS) // 읽기 timeout 설정
+            .writeTimeout(40, TimeUnit.SECONDS) // 쓰기 timeout 설정
+            .build()
 
-        // Retrofit 인스턴스 생성
+// Retrofit.Builder를 사용하여 Retrofit 인스턴스 생성
         val retrofit = Retrofit.Builder()
-            .baseUrl("http://localhost:5000/generate")  // Ngrok가 제공한 공개 URL로 대체
+            .baseUrl("http://846d-35-247-177-59.ngrok-free.app/")
+            .client(client) // OkHttpClient 설정을 Retrofit에 적용
             .addConverterFactory(GsonConverterFactory.create())
             .build()
+
 
         // ApiService 인스턴스 생성
         apiService = retrofit.create(ApiService::class.java)
