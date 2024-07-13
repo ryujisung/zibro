@@ -63,7 +63,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="지금 바로 친구의 일정을\n확인하러 가볼까요?"
+                android:text="지금 바로 고민을\n해결하러 가볼봐요"
                 android:textColor="@color/text2"
                 android:gravity="center"
                 android:textSize="14sp"

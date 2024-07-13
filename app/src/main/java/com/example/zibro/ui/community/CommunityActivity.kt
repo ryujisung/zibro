@@ -174,11 +174,13 @@ class CommunityActivity : BaseActivity<ActivityCommunityBinding>(R.layout.activi
 
     private fun updateRecommendButton() {
         if (isRecommended) {
-            binding.recommend.background = ContextCompat.getDrawable(this, R.drawable.recommend_true)
-            binding.goodic.setTextColor(Color.parseColor("#B1C0B5"))
+            binding.recommend.setImageResource(R.drawable.ic_recommend_true)
+            binding.goodic.setTextColor(Color.parseColor("#5592FC"))
+            binding.recommendLayout.background = ContextCompat.getDrawable(this, R.drawable.edt_bg_main_true)
         } else {
-            binding.recommend.background = ContextCompat.getDrawable(this, R.drawable.ic_recommend)
+            binding.recommend.setImageResource(R.drawable.ic_recommend_false)
             binding.goodic.setTextColor(Color.parseColor("#838A94"))
+            binding.recommendLayout.background = ContextCompat.getDrawable(this, R.drawable.edt_background_main)
         }
     }
 
