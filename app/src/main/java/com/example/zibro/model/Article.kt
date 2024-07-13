@@ -4,6 +4,7 @@ import android.os.Parcel
 import android.os.Parcelable
 
 data class Article(
+    var id: String = "",
     var classify: String = "",
     var comment: Int = 0,
     var context: String = "",
@@ -15,6 +16,7 @@ data class Article(
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString() ?: "",
+        parcel.readString() ?: "",
         parcel.readInt(),
         parcel.readString() ?: "",
         parcel.readInt(),
@@ -25,6 +27,7 @@ data class Article(
     )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeString(id)
         parcel.writeString(classify)
         parcel.writeInt(comment)
         parcel.writeString(context)

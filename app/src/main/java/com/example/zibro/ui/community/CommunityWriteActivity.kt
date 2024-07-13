@@ -2,7 +2,6 @@ package com.example.zibro.ui.community
 
 import android.os.Bundle
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import com.example.zibro.R
 import com.example.zibro.databinding.ActivityCommunityWriteBinding
 import com.example.zibro.model.Article
@@ -20,13 +19,12 @@ class CommunityWriteActivity : BaseActivity<ActivityCommunityWriteBinding>(R.lay
         super.onCreate(savedInstanceState)
         auth = FirebaseAuth.getInstance()
 
-        val user = FirebaseAuth.getInstance().currentUser
+        val user = auth.currentUser
         firestore = FirebaseFirestore.getInstance()
 
         val email = user?.email // 현재 로그인한 사용자의 이메일
         firestore.collection(email.toString()).get()
             .addOnSuccessListener { documents ->
-
                 val friend = documents.toObjects(Friend::class.java)
                 name = friend[0].name
             }
@@ -37,7 +35,9 @@ class CommunityWriteActivity : BaseActivity<ActivityCommunityWriteBinding>(R.lay
             val channel = binding.spinnerChannel.selectedItem.toString()
 
             if (title.isNotEmpty() && content.isNotEmpty()) {
+                val documentId = firestore.collection("community").document().id // 새로운 문서 ID 생성
                 val newArticle = Article(
+                    id = documentId,
                     classify = channel,
                     context = content,
                     title = title,
@@ -46,7 +46,7 @@ class CommunityWriteActivity : BaseActivity<ActivityCommunityWriteBinding>(R.lay
                 )
 
                 // Firestore에 Article 객체 저장
-                firestore.collection("community").add(newArticle)
+                firestore.collection("community").document(documentId).set(newArticle)
                     .addOnSuccessListener {
                         Toast.makeText(this, "Article submitted successfully", Toast.LENGTH_SHORT).show()
                         binding.editTextTitle.text.clear()
