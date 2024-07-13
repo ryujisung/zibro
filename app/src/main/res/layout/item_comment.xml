@@ -10,21 +10,24 @@
         android:id="@+id/textViewUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textStyle="bold" />
+        android:fontFamily="@font/suit_semibold" />
 
     <TextView
         app:layout_constraintTop_toBottomOf="@+id/textViewUsername"
         app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="4dp"
         android:id="@+id/textViewContent"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:textSize="14sp"/>
 
     <TextView
         app:layout_constraintStart_toEndOf="@id/textViewUsername"
-        app:layout_constraintTop_toTopOf="@id/textViewUsername"
+        app:layout_constraintBottom_toBottomOf="@id/textViewUsername"
+        android:layout_marginStart="6dp"
         android:id="@+id/textViewTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="12sp"
-        android:textColor="#808080" />
+        android:textSize="14sp"
+        android:textColor="@color/text3" />
 </androidx.constraintlayout.widget.ConstraintLayout>
