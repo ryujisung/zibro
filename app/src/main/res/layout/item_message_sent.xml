@@ -12,15 +12,8 @@
         android:gravity="end"
         android:paddingBottom="4dp">
 
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="42dp"
-            android:src="@drawable/background_message_sent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="@id/textViewSentMessage"
-            app:layout_constraintEnd_toEndOf="@id/textViewSentMessage"/>
-
         <TextView
+            android:background="@drawable/background_message_sent"
             android:id="@+id/textViewSentMessage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

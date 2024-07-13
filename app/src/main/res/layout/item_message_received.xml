@@ -21,17 +21,10 @@
         app:layout_constraintStart_toEndOf="@id/imageViewProfile"
         app:layout_constraintTop_toTopOf="parent"/>
 
-    <ImageView
-        android:id="@+id/txt_background"
-        android:layout_width="0dp"
-        android:layout_height="42dp"
-        android:layout_marginTop="6dp"
-        android:src="@drawable/background_message_recived"
-        app:layout_constraintStart_toStartOf="@id/textViewReceivedMessage"
-        app:layout_constraintEnd_toEndOf="@id/textViewReceivedMessage"
-        app:layout_constraintTop_toBottomOf="@id/textViewSenderName"/>
+
 
     <TextView
+        android:background="@drawable/background_message_recived"
         android:id="@+id/textViewReceivedMessage"
         android:textColor="@android:color/black"
         android:padding="12dp"
@@ -39,6 +32,6 @@
         android:layout_height="wrap_content"
         android:text="아아아악"
         app:layout_constraintStart_toStartOf="@id/textViewSenderName"
-        app:layout_constraintTop_toTopOf="@id/txt_background"
-        app:layout_constraintBottom_toBottomOf="@id/txt_background"/>
+        app:layout_constraintTop_toBottomOf="@id/textViewSenderName"
+    />
 </androidx.constraintlayout.widget.ConstraintLayout>
