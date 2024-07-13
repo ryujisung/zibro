@@ -9,6 +9,9 @@ import com.example.zibro.model.Friend
 import com.example.zibro.ui.base.BaseActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
 
 class CommunityWriteActivity : BaseActivity<ActivityCommunityWriteBinding>(R.layout.activity_community_write) {
     private lateinit var auth: FirebaseAuth
@@ -33,7 +36,9 @@ class CommunityWriteActivity : BaseActivity<ActivityCommunityWriteBinding>(R.lay
             val title = binding.editTextTitle.text.toString()
             val content = binding.editTextContent.text.toString()
             val channel = binding.spinnerChannel.selectedItem.toString()
-
+            val calendar = Calendar.getInstance()
+            val dateFormat = SimpleDateFormat("yyyy년 MM월 dd일", Locale.getDefault())
+            val currentDate = dateFormat.format(calendar.time)
             if (title.isNotEmpty() && content.isNotEmpty()) {
                 val documentId = firestore.collection("community").document().id // 새로운 문서 ID 생성
                 val newArticle = Article(
@@ -42,7 +47,7 @@ class CommunityWriteActivity : BaseActivity<ActivityCommunityWriteBinding>(R.lay
                     context = content,
                     title = title,
                     username = name,
-                    time = System.currentTimeMillis().toString(),
+                    time = currentDate.toString(),
                 )
 
                 // Firestore에 Article 객체 저장

@@ -17,9 +17,6 @@
             android:name=".ui.community.CommunityWriteActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.chat.DasfdasfActivity"
-            android:exported="false" />
-        <activity
             android:name=".ui.community.CommunityActivity"
             android:exported="false" />
         <activity

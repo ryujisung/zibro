@@ -32,7 +32,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
 
         val user = FirebaseAuth.getInstance().currentUser
 
-        val range = (1..2)
+        val range = (1..10)
         firestore.collection("MainPhrase").document(range.random().toString()).get()
             .addOnSuccessListener { document ->
                 if (document != null) {

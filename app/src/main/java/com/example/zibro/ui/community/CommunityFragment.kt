@@ -34,15 +34,23 @@ class CommunityFragment : BaseFragment<FragmentCommunityBinding>(R.layout.fragme
         fetchArticles()
         binding.writeButton.setOnClickListener {
             val intent = Intent(context, CommunityWriteActivity::class.java)
-            startActivity(intent)
+            startActivityForResult(intent, WRITE_REQUEST_CODE)
         }
 
         return view
     }
 
+    override fun onResume() {
+        super.onResume()
+        fetchArticles(binding.tabLayout.getTabAt(binding.tabLayout.selectedTabPosition)?.text.toString())
+    }
+
     private fun setupRecyclerView() {
         communutyAdapter = CommunutyAdapter { article ->
             // Handle item click
+            val intent = Intent(context, CommunityActivity::class.java)
+            intent.putExtra("article", article)
+            startActivityForResult(intent, VIEW_ARTICLE_REQUEST_CODE)
         }
 
         binding.recyclerCommunity.apply {
@@ -76,10 +84,15 @@ class CommunityFragment : BaseFragment<FragmentCommunityBinding>(R.layout.fragme
                 for (document in documents) {
                     val article = document.toObject(Article::class.java)
                     if (category == "전체" || article.classify == category) {
-                            articles.add(article)
+                        articles.add(article)
                     }
                 }
                 communutyAdapter.setChatRooms(articles)
             }
+    }
+
+    companion object {
+        private const val WRITE_REQUEST_CODE = 1
+        private const val VIEW_ARTICLE_REQUEST_CODE = 2
     }
 }
